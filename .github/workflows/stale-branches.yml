@@ -34,4 +34,5 @@ jobs:
         ignore-issue-interaction: false
     - name: print output
       run: |
-        ${{ steps.stale.outputs.stale-branches}}
+        $stale_br=${{ steps.stale.outputs.stale-branches}}
+        echo $stale_br
