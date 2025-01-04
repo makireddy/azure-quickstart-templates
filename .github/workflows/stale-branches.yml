@@ -34,4 +34,4 @@ jobs:
         ignore-issue-interaction: false
     - name: print output
       run: |
-        echo ${{ steps.stale.outputs.stale-branches}}
+        ${{ steps.stale.outputs.stale-branches}}
