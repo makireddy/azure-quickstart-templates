@@ -39,4 +39,4 @@ jobs:
     - name: print output
       shell: pwsh
       run: |
-        write-host "List of stale branches are, ${{ steps.stale.outputs.stale-branches}}"
+        write-host "List of stale branches are, ${{steps.stale.outputs.stale-branches}}"
