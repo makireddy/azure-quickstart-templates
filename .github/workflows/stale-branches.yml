@@ -49,7 +49,7 @@ jobs:
       shell: pwsh
       run: |
         # Original string
-        $input = ${{steps.stale.outputs.stale-branches}}
+        [string[]]$input = ${{steps.stale.outputs.stale-branches}}
         
         # Remove the square brackets and split the elements into an array
         $input = $input.TrimStart('[').TrimEnd(']')
