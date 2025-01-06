@@ -45,7 +45,17 @@ jobs:
         output=${output%\\n}
         # Print the output
         echo -e "$output"
-    # - name: print output
-    #   shell: pwsh
-    #   run: |
-    #     write-host "List of stale branches are, ${{steps.stale.outputs.stale-branches}}"
+    - name: print output
+      shell: pwsh
+      run: |
+        # Original string
+        $input = "${{steps.stale.outputs.stale-branches}}"
+        
+        # Remove the square brackets and split the elements into an array
+        $input = $input.TrimStart('[').TrimEnd(']')
+        $array = $input -split ', '
+        
+        # Print the array elements
+        foreach ($item in $array) {
+            Write-Output $item
+        }
