@@ -49,13 +49,14 @@ jobs:
       shell: pwsh
       run: |
         # Original string
-        [string[]]$input = ${{steps.stale.outputs.stale-branches}}
+        input=${{ steps.stale.outputs.stale-branches }}
         
         # Remove the square brackets and split the elements into an array
-        $input = $input.TrimStart('[').TrimEnd(']')
-        $array = $input -split ','
+        input=${input:1:-1}       # Remove the first and last characters (the brackets)
+        IFS=', ' read -r -a array <<< "$input"
         
         # Print the array elements
-        foreach ($item in $array) {
-            Write-Output $item
-        }
+        for item in "${array[@]}"
+        do
+          echo "$item"
+        done
