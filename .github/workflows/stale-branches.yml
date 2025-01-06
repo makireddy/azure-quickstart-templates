@@ -53,7 +53,7 @@ jobs:
         
         # Remove the square brackets and split the elements into an array
         $input = $input.TrimStart('[').TrimEnd(']')
-        $array = $input -split ', '
+        $array = $input -split ','
         
         # Print the array elements
         foreach ($item in $array) {
