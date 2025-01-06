@@ -39,6 +39,7 @@ jobs:
         output=""
         for item in "${stale_br[@]}"; do
           echo "$item"
+          output+="$item\n"
         done
         # Remove the trailing newline character
         output=${output%\\n}
