@@ -46,7 +46,7 @@ jobs:
     #     # Print the output
     #     echo -e "$output"
     - name: print output
-      shell: pwsh
+      # shell: pwsh
       run: |
         # Original string
         input=${{ steps.stale.outputs.stale-branches }}
