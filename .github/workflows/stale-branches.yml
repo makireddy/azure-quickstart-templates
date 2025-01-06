@@ -48,22 +48,29 @@ jobs:
     - name: print output
       # shell: pwsh
       run: |
-        # Original string
         input=${{ steps.stale.outputs.stale-branches }}
-        output=""
+        # Check if the variable is empty
+        if [ -z "$input" ]; then 
+          echo "The variable is empty." 
+        else 
+          echo "The variable is not empty. It contains: $variable" 
+        fi
+        # # Original string
+        # input=${{ steps.stale.outputs.stale-branches }}
+        # output=""
         
-        # Remove the square brackets and split the elements into an array
-        input=${input:1:-1}       # Remove the first and last characters (the brackets)
-        IFS=', ' read -r -a array <<< "$input"
+        # # Remove the square brackets and split the elements into an array
+        # input=${input:1:-1}       # Remove the first and last characters (the brackets)
+        # IFS=', ' read -r -a array <<< "$input"
         
-        # Print the array elements
-        for item in "${array[@]}"
-        do
-          # echo "$item"
-          output+="$item\n"
-        done
-        # Remove the trailing newline character
-        output=${output%\\n}
+        # # Print the array elements
+        # for item in "${array[@]}"
+        # do
+        #   # echo "$item"
+        #   output+="$item\n"
+        # done
+        # # Remove the trailing newline character
+        # output=${output%\\n}
         
-        # Print the output
-        echo -e "$output"
+        # # Print the output
+        # echo -e "$output"
