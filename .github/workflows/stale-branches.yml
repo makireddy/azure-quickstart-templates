@@ -37,7 +37,7 @@ jobs:
         stale_br=${{ steps.stale.outputs.stale-branches }}
         echo $stale_br
         output=""
-        for item in "${stale_br[@]}"; do
+        for item in "${{ steps.stale.outputs.stale-branches }}"; do
           echo "$item"
           output+="$item\n"
         done
