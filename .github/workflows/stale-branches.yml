@@ -32,24 +32,24 @@ jobs:
         pr-check: false
         dry-run: true
         ignore-issue-interaction: false
-    - name: print output
-      run: |
-        stale_br=${{ steps.stale.outputs.stale-branches }}
-        echo $stale_br
-        output=""
-        for item in "${{ steps.stale.outputs.stale-branches }}"; do
-          echo "$item"
-          output+="$item\n"
-        done
-        # Remove the trailing newline character
-        output=${output%\\n}
-        # Print the output
-        echo -e "$output"
+    # - name: print output
+    #   run: |
+    #     stale_br=${{ steps.stale.outputs.stale-branches }}
+    #     echo $stale_br
+    #     output=""
+    #     for item in "${{ steps.stale.outputs.stale-branches }}"; do
+    #       echo "$item"
+    #       output+="$item\n"
+    #     done
+    #     # Remove the trailing newline character
+    #     output=${output%\\n}
+    #     # Print the output
+    #     echo -e "$output"
     - name: print output
       shell: pwsh
       run: |
         # Original string
-        $input = "${{steps.stale.outputs.stale-branches}}"
+        $input = ${{steps.stale.outputs.stale-branches}}
         
         # Remove the square brackets and split the elements into an array
         $input = $input.TrimStart('[').TrimEnd(']')
