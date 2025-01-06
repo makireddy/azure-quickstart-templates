@@ -48,15 +48,28 @@ jobs:
     - name: print output
       # shell: pwsh
       run: |
-        input=[]
-        # Remove square brackets and check if the variable is empty 
-        stripped_variable=$(echo "$input" | tr -d '[]')
-        # Check if the variable is empty
-        if [ -z "$stripped_variable" ]; then 
-          echo "The variable is empty." 
+        input=${{ steps.stale.outputs.stale-branches }}
+        # Remove the brackets from the branches list output and check if it is empty or not
+        Stripped_Branches_Output=$(echo "$input" | tr -d '[]')
+        # Check if the Branches output is empty
+        if [ -z "$Stripped_Branches_Output" ]; then 
+          echo "There are no stale branhces" 
         else 
-          echo "The variable is not empty. It contains: $variable" 
+        output=""
+        # Remove the square brackets and split the elements into an array
+        input=${input:1:-1}       # Remove the first and last characters (the brackets)
+        IFS=', ' read -r -a array <<< "$input"
+        # Print the array elements
+        for item in "${array[@]}"
+        do
+          output+="$item\n"
+        done
+        # Remove the trailing newline character
+        output=${output%\\n}
+        # Print the output
+        echo -e "$output"
         fi
+        
         # # Original string
         # input=${{ steps.stale.outputs.stale-branches }}
         # output=""
