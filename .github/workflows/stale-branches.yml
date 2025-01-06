@@ -36,9 +36,14 @@ jobs:
       run: |
         stale_br=${{ steps.stale.outputs.stale-branches }}
         echo $stale_br
+        output=""
         for item in "${stale_br[@]}"; do
           echo "$item"
         done
+        # Remove the trailing newline character
+        output=${output%\\n}
+        # Print the output
+        echo -e "$output"
     # - name: print output
     #   shell: pwsh
     #   run: |
