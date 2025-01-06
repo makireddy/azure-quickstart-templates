@@ -32,11 +32,14 @@ jobs:
         pr-check: false
         dry-run: true
         ignore-issue-interaction: false
-    # - name: print output
-    #   run: |
-    #     stale_br=${{ steps.stale.outputs.stale-branches}}
-    #     echo $stale_br
     - name: print output
-      shell: pwsh
       run: |
-        write-host "List of stale branches are, ${{steps.stale.outputs.stale-branches}}"
+        stale_br=${{ steps.stale.outputs.stale-branches}}
+        echo $stale_br
+        for item in "$stale_br[@}"; do
+          echo "$item"
+        done
+    # - name: print output
+    #   shell: pwsh
+    #   run: |
+    #     write-host "List of stale branches are, ${{steps.stale.outputs.stale-branches}}"
