@@ -34,9 +34,9 @@ jobs:
         ignore-issue-interaction: false
     - name: print output
       run: |
-        stale_br=${{ steps.stale.outputs.stale-branches}}
+        stale_br=${{ steps.stale.outputs.stale-branches }}
         echo $stale_br
-        for item in "$stale_br[@}"; do
+        for item in "${stale_br[@]}"; do
           echo "$item"
         done
     # - name: print output
