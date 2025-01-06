@@ -48,7 +48,7 @@ jobs:
     - name: print output
       # shell: pwsh
       run: |
-        input=${{ steps.stale.outputs.stale-branches }}
+        input=[]
         # Check if the variable is empty
         if [ -z "$input" ]; then 
           echo "The variable is empty." 
