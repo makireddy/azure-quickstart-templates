@@ -50,6 +50,7 @@ jobs:
       run: |
         # Original string
         input=${{ steps.stale.outputs.stale-branches }}
+        output=""
         
         # Remove the square brackets and split the elements into an array
         input=${input:1:-1}       # Remove the first and last characters (the brackets)
@@ -58,5 +59,11 @@ jobs:
         # Print the array elements
         for item in "${array[@]}"
         do
-          echo "$item"
+          # echo "$item"
+          output+="$item\n"
         done
+        # Remove the trailing newline character
+        output=${output%\\n}
+        
+        # Print the output
+        echo -e "$output"
