@@ -16,14 +16,14 @@ jobs:
         input_string="This is a sample string"
         IFS=' ' read -r -a array <<< "$input_string"
         
-        # Expose the array as output
+        # Join array elements with a comma and write to environment file
         array_output=$(printf "%s," "${array[@]}")
-        echo "::set-output name=array::${array_output%,}"
+        echo "array=${array_output%,}" >> $GITHUB_ENV
         
-    - name: Access array from the output
+    - name: Access array from environment file
       run: |
-        # Access the array from the previous step's output
-        array="${{ steps.split_string.outputs.array }}"
+        # Access the array from the environment file
+        array="${array}"
         
         # Convert the comma-separated string back into an array
         IFS=',' read -r -a array <<< "$array"
