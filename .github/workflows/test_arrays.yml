@@ -1,0 +1,35 @@
+name: Pass Array of Values
+
+on: [push]
+
+jobs:
+  pass-array-values:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up string and split into array
+      id: split_string
+      run: |
+        input_string="This is a sample string"
+        IFS=' ' read -r -a array <<< "$input_string"
+        
+        # Expose the array as output
+        array_output=$(printf "%s," "${array[@]}")
+        echo "::set-output name=array::${array_output%,}"
+        
+    - name: Access array from the output
+      run: |
+        # Access the array from the previous step's output
+        array="${{ steps.split_string.outputs.array }}"
+        
+        # Convert the comma-separated string back into an array
+        IFS=',' read -r -a array <<< "$array"
+        
+        # Print each element of the array
+        for element in "${array[@]}"
+        do
+          echo "$element"
+        done
