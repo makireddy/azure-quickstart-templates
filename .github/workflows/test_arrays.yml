@@ -13,7 +13,11 @@ jobs:
     - name: Set up string and split into array
       id: split_string
       run: |
-        input_string="This is a sample string"
+        input_string="This
+        is
+        a
+        sample
+        string"
         IFS=' ' read -r -a array <<< "$input_string"
         
         # Join array elements with a comma and write to environment file
