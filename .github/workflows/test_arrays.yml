@@ -17,11 +17,12 @@ jobs:
         IFS=' ' read -r -a array <<< "$input_string"
         
         # Join array elements with a comma and write to environment file
-        array_output=$(printf "%s," "${array[@]}")
-        echo "array=${array_output%,}" >> $GITHUB_ENV
-        
+        # array_output=$(printf "%s," "${array[@]}")
+        # echo "array=${array_output%,}" >> $GITHUB_ENV
+        echo "array=$input_string" >> $GITHUB_ENV
     - name: Access array from environment file
       run: |
+      if: contains($array, 'this')
         # Access the array from the environment file
         array="${array}"
         
