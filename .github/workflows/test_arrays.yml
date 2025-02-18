@@ -33,13 +33,14 @@ jobs:
       if: contains(env.array, 'is')
       run: |
         # Access the array from the environment file
-        array="${array}"
+        # array="${array}"
+        echo ${{ env.array }}
         
         # Convert the comma-separated string back into an array
-        IFS=',' read -r -a array <<< "$array"
+        # IFS=',' read -r -a array <<< "$array"
         
         # Print each element of the array
-        for element in "${array[@]}"
-        do
-          echo "$element"
-        done
+        # for element in "${array[@]}"
+        # do
+        #   echo "$element"
+        # done
