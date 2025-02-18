@@ -30,7 +30,7 @@ jobs:
         # echo "array=${array_output%,}" >> $GITHUB_ENV
         # echo "array=$input_string" >> $GITHUB_ENV
     - name: Access array from environment file
-      if: contains(env.array, 'bhh')
+      if: contains(env.array, 'is')
       run: |
         # Access the array from the environment file
         array="${array}"
